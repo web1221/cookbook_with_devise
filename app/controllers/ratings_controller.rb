@@ -13,6 +13,7 @@ class RatingsController < ApplicationController
   def create
     @rating = Rating.new(rating_params)
     if @rating.save
+      flash[:notice] = "New Rating!"
       redirect_to ratings_path
     else
       render :new

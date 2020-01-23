@@ -22,8 +22,11 @@
   </div>
 
   <div class="field">
-      <%= f.label "Admin?" %> <br />
-      <%= check_box_tag :admin, checked = true %> Admin</br></br>
+      <h3>Make admin?</h3>
+      <%= f.label "yes" %>
+      <%= f.radio_button :admin, true %>
+      <%= f.label "no" %>
+      <%= f.radio_button :admin, false, :checked => true %>
   </div>
 
   <div class="actions">
