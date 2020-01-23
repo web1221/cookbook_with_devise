@@ -2,6 +2,7 @@ class RatingsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
   def index
     @ratings = Rating.all
+    @rating = Rating.most_recipes
     render :index
   end
 
@@ -28,6 +29,7 @@ class RatingsController < ApplicationController
 
   def show
     @rating = Rating.find(params[:id])
+    @ratings = Rating.most_recipes
     if params[:search]
       @recipes = @rating.recipes.search(params[:search])
     else

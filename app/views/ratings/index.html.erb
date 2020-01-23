@@ -15,5 +15,7 @@
 <p><%= link_to "Create new rating", new_rating_path %></p>
 <% end %>
 <ul>
-
+  <% @rating.each do |r|%>
+  <li><%= link_to r.difficulty, rating_path(r) %></li>
+  <% end %>
 </ul>
