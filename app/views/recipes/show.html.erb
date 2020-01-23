@@ -1,0 +1,22 @@
+<h1>Recipe: <%= @recipe.title %></h1>
+<h2>Rating: <%= @rating.difficulty %></h2>
+  <h4>Ingredients:</h4>
+  <ul>
+  <% @recipe.ingredients.gsub(/\W/, " ").split(" ").each do |ingredient| %>
+      <li>
+        <%= ingredient %>
+      </li>
+  <% end %>
+</ul>
+<h3>Instructions: <%= @recipe.instructions %></h3>
+
+<% if current_user %>
+<p><%= link_to "Edit recipe", edit_rating_recipe_path(@rating, @recipe) %></p>
+<% end %>
+<% if current_user && current_user.admin %>
+<p><%= link_to "Delete recipe", rating_recipe_path(@rating, @recipe),
+                        :data => {:confirm => "Are you sure?",
+                                       :method => "delete"} %></p>
+<% end %>
+
+<p><%= link_to "Return to rating", rating_path(@rating) %></p>

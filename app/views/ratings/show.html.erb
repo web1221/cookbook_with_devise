@@ -1,0 +1,32 @@
+<h1><%= @rating.difficulty %></h1>
+<form>
+  <label for="">Search by title</label>
+  <input type="text" name="search">
+  <button type="submit" name="button">go</button>
+</form>
+
+<% if @recipes.any? %>
+  <h4>Here are the recipes for this rating:</h4>
+
+  <% @recipes.each do |recipe| %>
+    <ul>
+      <li>
+        <%= link_to recipe.title, rating_recipe_path(@rating, recipe) %>
+      </li>
+    </ul>
+  <% end %>
+<% else %>
+  <p>No recipes are listed for this rating.</p>
+<% end %>
+<% if current_user  %>
+<p><%= link_to "Add a recipe", new_rating_recipe_path(@rating) %></p>
+
+<p><%= link_to "Edit", edit_rating_path(@rating) %></p>
+<% end %>
+<% if current_user && current_user.admin %>
+<p><%= link_to "Delete rating", rating_path(@rating),
+                        :data => {:confirm => "Are you sure?",
+                                       :method => "delete"} %></p>
+
+<% end %>
+<p><%= link_to "Return to ratings", ratings_path %></p>

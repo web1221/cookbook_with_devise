@@ -1,0 +1,7 @@
+<%= render "layouts/errors", :object => @rating %>
+
+<%= form_for @rating do |f| %>
+<%= f.label :difficulty %>
+<%= f.text_field :difficulty %>
+<%= f.submit  %>
+<% end %>
